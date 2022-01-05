@@ -102,9 +102,6 @@ add_custom_target(AllTests)
 
 #TODO Build Docs with Sphinx
 
-# System test data target
-add_subdirectory(Testing/SystemTests/scripts)
-
 # Installation settings
 
 # Install the files (.desktop and icon) to create a menu items

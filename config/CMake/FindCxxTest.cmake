@@ -217,7 +217,7 @@ endmacro(CXXTEST_ADD_TEST)
 
 find_path(
   CXXTEST_INCLUDE_DIR cxxtest/TestSuite.h
-  PATHS ${PROJECT_SOURCE_DIR}/Testing/Tools/cxxtest ${PROJECT_SOURCE_DIR}/../Testing/Tools/cxxtest
+  PATHS ${PROJECT_SOURCE_DIR}/tools/cxxtest ${PROJECT_SOURCE_DIR}/../tools/cxxtest
   NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH
 )
 
@@ -227,7 +227,7 @@ find_program(
   NO_CMAKE_FIND_ROOT_PATH
 )
 
-file(GLOB_RECURSE CXXTEST_PYTHON_FILES ${PROJECT_SOURCE_DIR}/Testing/Tools/cxxtest/python/*.py)
+file(GLOB_RECURSE CXXTEST_PYTHON_FILES ${PROJECT_SOURCE_DIR}/tools/cxxtest/python/*.py)
 
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(CxxTest DEFAULT_MSG CXXTEST_INCLUDE_DIR)
