@@ -1,0 +1,12 @@
+   
+name: benchmarks-dev
+
+channels:
+  - conda-forge
+
+dependencies:
+  - boost=1.75.* 
+  - cmake>=3.20.*
+  - conda-wrappers
+  - tbb-devel=2020.2.*
+  - tbb=2020.2.*
