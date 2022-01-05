@@ -9,3 +9,5 @@ add_executable(benchmarks ${SRC_FILES} ${INC_FILES})
 
 target_include_directories(benchmarks PRIVATE ${TBB_INCLUDE_DIRECTORIES} ${BOOST_INCLUDEDIRS})
 target_link_libraries(benchmarks PRIVATE ${Boost_LIBRARIES} ${TBB_LIBRARIES})
+
+add_subdirectory(test)

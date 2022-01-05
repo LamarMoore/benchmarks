@@ -6,4 +6,4 @@
 call %~dp0thirdpartypaths.bat
 set MSVC_IDE=@MSVC_IDE_LOCATION@
 :: Start IDE
-start "" "%MSVC_IDE%/devenv.exe" Mantid.sln
+start "" "%MSVC_IDE%/devenv.exe" Benchmarks.sln

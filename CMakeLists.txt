@@ -99,6 +99,7 @@ endif()
 
 add_custom_target(AllTests)
 
+add_subdirectory(code)
 
 #TODO Build Docs with Sphinx
 
