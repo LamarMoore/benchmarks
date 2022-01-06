@@ -10,3 +10,5 @@ dependencies:
   - conda-wrappers
   - tbb-devel=2020.2.*
   - tbb=2020.2.*
+  - cppcheck>=2.4.1
+  - pre-commit>=2.12.0
