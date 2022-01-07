@@ -1,0 +1,25 @@
+name: Benchmarks Tests
+on: [push, pull-request]
+jobs:
+  Run-Unit-Tests:
+    name: Benchmark Unit Tests
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+        name: Grab Dependencies and Create Conda Environment
+        run: 
+          C:\Miniconda\condabin\conda.bat env create -f benchmarks-win.yml
+          C:\Miniconda\condabin\conda.bat env init powershell
+        name: Activate benchmarks-dev environment and run cmake
+        run:
+          C:\Miniconda\condabin\conda.bat activate benchmarks-dev
+          cmake --preset=win -B build -DCXXTEST_ADD_PERFORMANCE=ON
+        name: Build benchmarks
+        run:
+          build\command-prompt.bat
+          msbuild build/benchmarks.sln /p:Configuration=Release
+        name: Run Unit Tests
+        run:
+          ctest -C Release -V --test-dir ./build
+      - run: echo "🍏 This job's status is ${{ job.status }}."

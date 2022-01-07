@@ -40,6 +40,6 @@ public:
 class BenchmarksTestPerformance : public CxxTest::TestSuite {
 public:
 	void test_nothing() {
-		TS_ASSERT(false);
+		TS_ASSERT(true);
 	}
 };

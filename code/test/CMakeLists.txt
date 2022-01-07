@@ -7,4 +7,6 @@ if(CXXTEST_FOUND)
 
   # Add to the 'FrameworkTests' group in VS
   set_property(TARGET BenchmarksTest PROPERTY FOLDER "UnitTests")
+  message(WARNING "${PROJECT_BINARY_DIR}")
+  
 endif()
