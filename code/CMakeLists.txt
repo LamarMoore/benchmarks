@@ -10,7 +10,7 @@ add_library(benchmarks STATIC ${SRC_FILES} ${INC_FILES})
 set_target_properties(benchmarks PROPERTIES OUTPUT_NAME benchmarks COMPILE_DEFINITIONS "IN_BENCHMARKS")
 
 target_include_directories(benchmarks PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc)
-target_link_libraries(benchmarks PUBLIC TBB::tbb)
+target_link_libraries(benchmarks PUBLIC TBB::tbb TBB::tbbmalloc)
 
 
 add_subdirectory(test)

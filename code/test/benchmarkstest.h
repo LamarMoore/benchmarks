@@ -9,7 +9,7 @@ class BenchmarksTest : public CxxTest::TestSuite {
 public:
 	void test_default_construction() {
 		BenchmarkTests benchmark;
-		const size_t defaultSize = 10000;
+		const size_t defaultSize = 100000;
 		TS_ASSERT_EQUALS(benchmark.getBenchmarkArraySize(), defaultSize);
 		
 		const auto& vec = benchmark.getBenchmarkVector();
