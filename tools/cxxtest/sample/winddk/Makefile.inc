@@ -5,7 +5,7 @@
 #
 
 PYTHON=python
-CXXTESTGEN=$(PYTHON) $(CXXTESTDIR)/bin/cxxtestgen
+CXXTESTGEN=$(PYTHON) $(CXXTESTDIR)/python/scripts/cxxtestgen
 
 TEST_SUITES=$(SUITESDIR)/*.h
 

@@ -22,6 +22,7 @@ else()
   message(STATUS "Could NOT find CxxTest - unit testing not available")
 endif()
 
+find_package(GTest)
 enable_testing()
 
 # We want shared libraries everywhere

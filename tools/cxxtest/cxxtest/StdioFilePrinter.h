@@ -1,16 +1,10 @@
-/*
--------------------------------------------------------------------------
- CxxTest: A lightweight C++ unit testing library.
- Copyright (c) 2008 Sandia Corporation.
- This software is distributed under the LGPL License v3
- For more information, see the COPYING file in the top CxxTest directory.
- Under the terms of Contract DE-AC04-94AL85000 with Sandia Corporation,
- the U.S. Government retains certain rights in this software.
--------------------------------------------------------------------------
-*/
-
-#ifndef __cxxtest__StdioFilePrinter_h__
-#define __cxxtest__StdioFilePrinter_h__
+// Mantid Repository : https://github.com/mantidproject/mantid
+//
+// Copyright &copy; 2018 ISIS Rutherford Appleton Laboratory UKRI,
+//   NScD Oak Ridge National Laboratory, European Spallation Source,
+//   Institut Laue - Langevin & CSNS, Institute of High Energy Physics, CAS
+// SPDX - License - Identifier: GPL - 3.0 +
+#pragma once
 
 //
 // The StdioFilePrinter is a simple TestListener that
@@ -24,29 +18,27 @@
 
 namespace CxxTest
 {
-class StdioFilePrinter : public ErrorFormatter
-{
-public:
-    StdioFilePrinter(FILE *o, const char *preLine = ":", const char *postLine = "") :
-        ErrorFormatter(new Adapter(o), preLine, postLine) {}
-    virtual ~StdioFilePrinter() { delete outputStream(); }
-
-private:
-    class Adapter : public OutputStream
+    class StdioFilePrinter : public ErrorFormatter
     {
-        Adapter(const Adapter &);
-        Adapter &operator=(const Adapter &);
-
-        FILE *_o;
-
     public:
-        Adapter(FILE *o) : _o(o) {}
-        void flush() { fflush(_o); }
-        OutputStream &operator<<(unsigned i) { fprintf(_o, "%u", i); return *this; }
-        OutputStream &operator<<(const char *s) { fputs(s, _o); return *this; }
-        OutputStream &operator<<(Manipulator m) { return OutputStream::operator<<(m); }
-    };
-};
-}
+        StdioFilePrinter( FILE *o, const char *preLine = ":", const char *postLine = "" ) :
+            ErrorFormatter( new Adapter(o), preLine, postLine ) {}
+        virtual ~StdioFilePrinter() { delete outputStream(); }
 
-#endif // __cxxtest__StdioFilePrinter_h__
+    private:
+        class Adapter : public OutputStream
+        {
+            Adapter( const Adapter & );
+            Adapter &operator=( const Adapter & );
+
+            FILE *_o;
+
+        public:
+            Adapter( FILE *o ) : _o(o) {}
+            void flush() { fflush( _o ); }
+            OutputStream &operator<<( unsigned i ) { fprintf( _o, "%u", i ); return *this; }
+            OutputStream &operator<<( const char *s ) { fputs( s, _o ); return *this; }
+            OutputStream &operator<<( Manipulator m ) { return OutputStream::operator<<( m ); }
+        };
+    };
+}

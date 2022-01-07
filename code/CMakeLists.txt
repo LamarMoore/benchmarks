@@ -5,9 +5,12 @@ set(INC_FILES inc/benchmarks.h)
 set(TEST_FILES benchmarkstest.h)
 
 
-add_executable(benchmarks ${SRC_FILES} ${INC_FILES})
+add_library(benchmarks STATIC ${SRC_FILES} ${INC_FILES})
+# Set the name of the generated library
+set_target_properties(benchmarks PROPERTIES OUTPUT_NAME benchmarks COMPILE_DEFINITIONS "IN_BENCHMARKS")
 
-target_include_directories(benchmarks PRIVATE ${TBB_INCLUDE_DIRECTORIES} ${BOOST_INCLUDEDIRS})
-target_link_libraries(benchmarks PRIVATE ${Boost_LIBRARIES} ${TBB_LIBRARIES})
+target_include_directories(benchmarks PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc)
+target_link_libraries(benchmarks PUBLIC TBB::tbb)
+
 
 add_subdirectory(test)

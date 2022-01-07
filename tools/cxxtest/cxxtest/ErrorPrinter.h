@@ -1,16 +1,10 @@
-/*
--------------------------------------------------------------------------
- CxxTest: A lightweight C++ unit testing library.
- Copyright (c) 2008 Sandia Corporation.
- This software is distributed under the LGPL License v3
- For more information, see the COPYING file in the top CxxTest directory.
- Under the terms of Contract DE-AC04-94AL85000 with Sandia Corporation,
- the U.S. Government retains certain rights in this software.
--------------------------------------------------------------------------
-*/
-
-#ifndef __cxxtest__ErrorPrinter_h__
-#define __cxxtest__ErrorPrinter_h__
+// Mantid Repository : https://github.com/mantidproject/mantid
+//
+// Copyright &copy; 2018 ISIS Rutherford Appleton Laboratory UKRI,
+//   NScD Oak Ridge National Laboratory, European Spallation Source,
+//   Institut Laue - Langevin & CSNS, Institute of High Energy Physics, CAS
+// SPDX - License - Identifier: GPL - 3.0 +
+#pragma once
 
 //
 // The ErrorPrinter is a simple TestListener that
@@ -36,33 +30,29 @@
 
 namespace CxxTest
 {
-class ErrorPrinter : public ErrorFormatter
-{
-public:
-    ErrorPrinter(CXXTEST_STD(ostream) &o = CXXTEST_STD(cout), const char *preLine = ":", const char *postLine = "",
-                 const char *errorString = "Error",
-                 const char *warningString = "Warning") :
-        ErrorFormatter(new Adapter(o), preLine, postLine, errorString, warningString) {}
-    virtual ~ErrorPrinter() { delete outputStream(); }
-
-private:
-    class Adapter : public OutputStream
+    class ErrorPrinter : public ErrorFormatter
     {
-        CXXTEST_STD(ostream) &_o;
     public:
-        Adapter(CXXTEST_STD(ostream) &o) : _o(o) {}
-        void flush() { _o.flush(); }
-        OutputStream &operator<<(const char *s) { _o << s; return *this; }
-        OutputStream &operator<<(Manipulator m) { return OutputStream::operator<<(m); }
-        OutputStream &operator<<(unsigned i)
-        {
-            char s[1 + 3 * sizeof(unsigned)];
-            numberToString(i, s);
-            _o << s;
-            return *this;
-        }
-    };
-};
-}
+        ErrorPrinter( CXXTEST_STD(ostream) &o = CXXTEST_STD(cout), const char *preLine = ":", const char *postLine = "" ) :
+            ErrorFormatter( new Adapter(o), preLine, postLine ) {}
+        virtual ~ErrorPrinter() { delete outputStream(); }
 
-#endif // __cxxtest__ErrorPrinter_h__
+    private:
+        class Adapter : public OutputStream
+        {
+            CXXTEST_STD(ostream) &_o;
+        public:
+            Adapter( CXXTEST_STD(ostream) &o ) : _o(o) {}
+            void flush() { _o.flush(); }
+            OutputStream &operator<<( const char *s ) { _o << s; return *this; }
+            OutputStream &operator<<( Manipulator m ) { return OutputStream::operator<<( m ); }
+            OutputStream &operator<<( unsigned i )
+            {
+                char s[1 + 3 * sizeof(unsigned)];
+                numberToString( i, s );
+                _o << s;
+                return *this;
+            }
+        };
+    };
+}

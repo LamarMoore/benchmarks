@@ -1,18 +1,10 @@
-/*
--------------------------------------------------------------------------
- CxxTest: A lightweight C++ unit testing library.
- Copyright (c) 2008 Sandia Corporation.
- This software is distributed under the LGPL License v3
- For more information, see the COPYING file in the top CxxTest directory.
- Under the terms of Contract DE-AC04-94AL85000 with Sandia Corporation,
- the U.S. Government retains certain rights in this software.
--------------------------------------------------------------------------
-*/
-
-#ifndef __cxxtest__Mock_h__
-#define __cxxtest__Mock_h__
-
-namespace dummy_mock_ns {}
+// Mantid Repository : https://github.com/mantidproject/mantid
+//
+// Copyright &copy; 2018 ISIS Rutherford Appleton Laboratory UKRI,
+//   NScD Oak Ridge National Laboratory, European Spallation Source,
+//   Institut Laue - Langevin & CSNS, Institute of High Energy Physics, CAS
+// SPDX - License - Identifier: GPL - 3.0 +
+#pragma once
 
 //
 // The default namespace is T::
@@ -139,9 +131,8 @@ namespace dummy_mock_ns {}
          \
         Base_##MOCK &Base_##MOCK::current() \
         { \
-            if ( _list.empty() ) { \
+            if ( _list.empty() ) \
                 static _Unimplemented_##MOCK unimplemented; \
-            } \
             return *(Base_##MOCK *)_list.tail(); \
         } \
     }
@@ -156,9 +147,8 @@ namespace dummy_mock_ns {}
          \
         TYPE _Unimplemented_##MOCK::NAME ARGS \
         { \
-            while ( false ) {\
+            while ( false ) \
                 return NAME CALL; \
-            } \
             __CXXTEST_MOCK_UNIMPLEMENTED( NAME, ARGS ); \
             return MockTraits<TYPE>::defaultValue(); \
         } \
@@ -179,9 +169,8 @@ namespace dummy_mock_ns {}
          \
         void _Unimplemented_##MOCK::NAME ARGS \
         { \
-            while ( false ) { \
+            while ( false ) \
                 NAME CALL; \
-            } \
             __CXXTEST_MOCK_UNIMPLEMENTED( NAME, ARGS ); \
         } \
          \
@@ -196,9 +185,8 @@ namespace dummy_mock_ns {}
     namespace CXXTEST_MOCK_NAMESPACE { \
         TYPE _Unimplemented_##MOCK::NAME ARGS \
         { \
-            while ( false ) { \
+            while ( false ) \
                 return NAME CALL; \
-            } \
             __CXXTEST_MOCK_UNIMPLEMENTED( NAME, ARGS ); \
             return MockTraits<TYPE>::defaultValue(); \
         } \
@@ -214,9 +202,8 @@ namespace dummy_mock_ns {}
     namespace CXXTEST_MOCK_NAMESPACE { \
         void _Unimplemented_##MOCK::NAME ARGS \
         { \
-            while ( false ) { \
+            while ( false ) \
                 NAME CALL; \
-            } \
             __CXXTEST_MOCK_UNIMPLEMENTED( NAME, ARGS ); \
         } \
     } \
@@ -225,14 +212,14 @@ namespace dummy_mock_ns {}
     { \
         CXXTEST_MOCK_NAMESPACE::Base_##MOCK::current().NAME CALL; \
     } \
- 
+
 //
 // Error for calling mock function w/o object
 //
 #define __CXXTEST_MOCK_UNIMPLEMENTED( NAME, ARGS ) \
     TS_FAIL( CXXTEST_MOCK_NAMESPACE_STR #NAME #ARGS " called with no " \
              CXXTEST_MOCK_NAMESPACE_STR "Base_" #NAME " object" ); \
- 
+
 #define CXXTEST_MOCK_NAMESPACE_STR __CXXTEST_STR(CXXTEST_MOCK_NAMESPACE) "::"
 #define __CXXTEST_STR(X) __CXXTEST_XSTR(X)
 #define __CXXTEST_XSTR(X) #X
@@ -243,31 +230,27 @@ namespace dummy_mock_ns {}
 //
 #include <cxxtest/TestSuite.h>
 
-__CXXTEST_MOCK__TRAITS
+__CXXTEST_MOCK__TRAITS;
 
 #define CXXTEST_MOCK( MOCK, TYPE, NAME, ARGS, REAL, CALL ) \
     __CXXTEST_MOCK__PROTOTYPE( MOCK, TYPE, NAME, ARGS, REAL, CALL ) \
     __CXXTEST_MOCK__CLASS_DECLARATION( MOCK, TYPE, NAME, ARGS, REAL, CALL ) \
-    __CXXTEST_MOCK__CLASS_IMPLEMENTATION( MOCK, TYPE, NAME, ARGS, REAL, CALL ) \
-    using namespace dummy_mock_ns
+    __CXXTEST_MOCK__CLASS_IMPLEMENTATION( MOCK, TYPE, NAME, ARGS, REAL, CALL )
 
 #define CXXTEST_MOCK_VOID( MOCK, NAME, ARGS, REAL, CALL ) \
     __CXXTEST_MOCK_VOID__PROTOTYPE( MOCK, NAME, ARGS, REAL, CALL ) \
     __CXXTEST_MOCK_VOID__CLASS_DECLARATION( MOCK, NAME, ARGS, REAL, CALL ) \
-    __CXXTEST_MOCK_VOID__CLASS_IMPLEMENTATION( MOCK, NAME, ARGS, REAL, CALL ) \
-    using namespace dummy_mock_ns
+    __CXXTEST_MOCK_VOID__CLASS_IMPLEMENTATION( MOCK, NAME, ARGS, REAL, CALL )
 
 #define CXXTEST_SUPPLY( MOCK, TYPE, NAME, ARGS, REAL, CALL ) \
     __CXXTEST_SUPPLY__PROTOTYPE( MOCK, TYPE, NAME, ARGS, REAL, CALL ) \
     __CXXTEST_SUPPLY__CLASS_DECLARATION( MOCK, TYPE, NAME, ARGS, REAL, CALL ) \
-    __CXXTEST_SUPPLY__CLASS_IMPLEMENTATION( MOCK, TYPE, NAME, ARGS, REAL, CALL ) \
-    using namespace dummy_mock_ns
+    __CXXTEST_SUPPLY__CLASS_IMPLEMENTATION( MOCK, TYPE, NAME, ARGS, REAL, CALL )
 
 #define CXXTEST_SUPPLY_VOID( MOCK, NAME, ARGS, REAL, CALL ) \
     __CXXTEST_SUPPLY_VOID__PROTOTYPE( MOCK, NAME, ARGS, REAL, CALL ) \
     __CXXTEST_SUPPLY_VOID__CLASS_DECLARATION( MOCK, NAME, ARGS, REAL, CALL ) \
-    __CXXTEST_SUPPLY_VOID__CLASS_IMPLEMENTATION( MOCK, NAME, ARGS, REAL, CALL ) \
-    using namespace dummy_mock_ns
+    __CXXTEST_SUPPLY_VOID__CLASS_IMPLEMENTATION( MOCK, NAME, ARGS, REAL, CALL )
 
 #elif defined(CXXTEST_FLAGS) || defined(CXXTEST_RUNNING)
 //
@@ -279,33 +262,29 @@ __CXXTEST_MOCK__TRAITS;
 
 #define CXXTEST_MOCK( MOCK, TYPE, NAME, ARGS, REAL, CALL ) \
     __CXXTEST_MOCK__PROTOTYPE( MOCK, TYPE, NAME, ARGS, REAL, CALL ) \
-    __CXXTEST_MOCK__CLASS_DECLARATION( MOCK, TYPE, NAME, ARGS, REAL, CALL ) \
-    using namespace dummy_mock_ns
+    __CXXTEST_MOCK__CLASS_DECLARATION( MOCK, TYPE, NAME, ARGS, REAL, CALL )
 
 #define CXXTEST_MOCK_VOID( MOCK, NAME, ARGS, REAL, CALL ) \
     __CXXTEST_MOCK_VOID__PROTOTYPE( MOCK, NAME, ARGS, REAL, CALL ) \
-    __CXXTEST_MOCK_VOID__CLASS_DECLARATION( MOCK, NAME, ARGS, REAL, CALL ) \
-    using namespace dummy_mock_ns
+    __CXXTEST_MOCK_VOID__CLASS_DECLARATION( MOCK, NAME, ARGS, REAL, CALL )
 
 #define CXXTEST_SUPPLY( MOCK, TYPE, NAME, ARGS, REAL, CALL ) \
     __CXXTEST_SUPPLY__PROTOTYPE( MOCK, TYPE, NAME, ARGS, REAL, CALL ) \
-    __CXXTEST_SUPPLY__CLASS_DECLARATION( MOCK, TYPE, NAME, ARGS, REAL, CALL ) \
-    using namespace dummy_mock_ns
+    __CXXTEST_SUPPLY__CLASS_DECLARATION( MOCK, TYPE, NAME, ARGS, REAL, CALL )
 
 #define CXXTEST_SUPPLY_VOID( MOCK, NAME, ARGS, REAL, CALL ) \
     __CXXTEST_SUPPLY_VOID__PROTOTYPE( MOCK, NAME, ARGS, REAL, CALL ) \
-    __CXXTEST_SUPPLY_VOID__CLASS_DECLARATION( MOCK, NAME, ARGS, REAL, CALL ) \
-    using namespace dummy_mock_ns
+    __CXXTEST_SUPPLY_VOID__CLASS_DECLARATION( MOCK, NAME, ARGS, REAL, CALL )
 
 #elif defined(CXXTEST_MOCK_REAL_SOURCE_FILE)
 //
 // Real source file: "Real" implementations
 //
 #define CXXTEST_MOCK( MOCK, TYPE, NAME, ARGS, REAL, CALL ) \
-    namespace CXXTEST_MOCK_NAMESPACE { TYPE NAME ARGS { return REAL CALL; } } using namespace dummy_mock_ns
+    namespace CXXTEST_MOCK_NAMESPACE { TYPE NAME ARGS { return REAL CALL; } }
 
 #define CXXTEST_MOCK_VOID( MOCK, NAME, ARGS, REAL, CALL ) \
-    namespace CXXTEST_MOCK_NAMESPACE { void NAME ARGS { REAL CALL; } } using namespace dummy_mock_ns
+    namespace CXXTEST_MOCK_NAMESPACE { void NAME ARGS { REAL CALL; } }
 
 #else
 //
@@ -313,20 +292,16 @@ __CXXTEST_MOCK__TRAITS;
 //
 
 #define CXXTEST_MOCK( MOCK, TYPE, NAME, ARGS, REAL, CALL ) \
-    __CXXTEST_MOCK__PROTOTYPE( MOCK, TYPE, NAME, ARGS, REAL, CALL ) \
-    using namespace dummy_mock_ns
+    __CXXTEST_MOCK__PROTOTYPE( MOCK, TYPE, NAME, ARGS, REAL, CALL )
 
 #define CXXTEST_MOCK_VOID( MOCK, NAME, ARGS, REAL, CALL ) \
-    __CXXTEST_MOCK_VOID__PROTOTYPE( MOCK, NAME, ARGS, REAL, CALL ) \
-    using namespace dummy_mock_ns
+    __CXXTEST_MOCK_VOID__PROTOTYPE( MOCK, NAME, ARGS, REAL, CALL )
 
 #define CXXTEST_SUPPLY( MOCK, TYPE, NAME, ARGS, REAL, CALL ) \
-    __CXXTEST_SUPPLY__PROTOTYPE( MOCK, TYPE, NAME, ARGS, REAL, CALL ) \
-    using namespace dummy_mock_ns
+    __CXXTEST_SUPPLY__PROTOTYPE( MOCK, TYPE, NAME, ARGS, REAL, CALL )
 
 #define CXXTEST_SUPPLY_VOID( MOCK, NAME, ARGS, REAL, CALL ) \
-    __CXXTEST_SUPPLY_VOID__PROTOTYPE( MOCK, NAME, ARGS, REAL, CALL ) \
-    using namespace dummy_mock_ns
+    __CXXTEST_SUPPLY_VOID__PROTOTYPE( MOCK, NAME, ARGS, REAL, CALL )
 
 #endif // Ordinary header file
 
@@ -375,6 +350,4 @@ __CXXTEST_MOCK__TRAITS;
         public: \
             static TYPE defaultValue() { return VALUE; } \
         }; \
-    } using namespace dummy_mock_ns
-
-#endif // __cxxtest__Mock_h__
+    }

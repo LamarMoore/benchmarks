@@ -1,3 +1,9 @@
+// Mantid Repository : https://github.com/mantidproject/mantid
+//
+// Copyright &copy; 2018 ISIS Rutherford Appleton Laboratory UKRI,
+//   NScD Oak Ridge National Laboratory, European Spallation Source,
+//   Institut Laue - Langevin & CSNS, Institute of High Energy Physics, CAS
+// SPDX - License - Identifier: GPL - 3.0 +
 #include <cxxtest/TestSuite.h>
 
 //
@@ -9,7 +15,7 @@ class Comments : public CxxTest::TestSuite
 public:
     void test_Something()
     {
-        TS_WARN("Something");
+        TS_WARN( "Something" );
     }
 
 //     void test_Something_else()
@@ -22,3 +28,9 @@ public:
     //    TS_WARN( "Something else" );
     //}
 };
+
+//
+// Local Variables:
+// compile-command: "perl test.pl"
+// End:
+//

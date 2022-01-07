@@ -1,5 +1,10 @@
-#ifndef __MESSAGETEST_H
-#define __MESSAGETEST_H
+// Mantid Repository : https://github.com/mantidproject/mantid
+//
+// Copyright &copy; 2018 ISIS Rutherford Appleton Laboratory UKRI,
+//   NScD Oak Ridge National Laboratory, European Spallation Source,
+//   Institut Laue - Langevin & CSNS, Institute of High Energy Physics, CAS
+// SPDX - License - Identifier: GPL - 3.0 +
+#pragma once
 
 #include <cxxtest/TestSuite.h>
 
@@ -9,19 +14,19 @@
 // This is useful when you refactor your tests, as shown below
 //
 
-class MessageTest : public CxxTest::TestSuite {
+class MessageTest : public CxxTest::TestSuite
+{
 public:
-    void testValues() {
-        checkValue(0, "My hovercraft");
-        checkValue(1, "is full");
-        checkValue(2, "of eels");
+    void testValues()
+    {
+        checkValue( 0, "My hovercraft" );
+        checkValue( 1, "is full" );
+        checkValue( 2, "of eels" );
     }
 
-    void checkValue(unsigned value, const char *message) {
-        TSM_ASSERT(message, value != 0);
-        TSM_ASSERT_EQUALS(message, value, value * value);
+    void checkValue( unsigned value, const char *message )
+    {
+        TSM_ASSERT( message, value != 0 );
+        TSM_ASSERT_EQUALS( message, value, value * value );
     }
 };
-
-
-#endif // __MESSAGETEST_H

@@ -1,33 +1,36 @@
-#-------------------------------------------------------------------------
-# CxxTest: A lightweight C++ unit testing library.
-# Copyright (c) 2008 Sandia Corporation.
-# This software is distributed under the LGPL License v3
-# For more information, see the COPYING file in the top CxxTest directory.
-# Under the terms of Contract DE-AC04-94AL85000 with Sandia Corporation,
-# the U.S. Government retains certain rights in this software.
-#-------------------------------------------------------------------------
-
+# Mantid Repository : https://github.com/mantidproject/mantid
+#
+# Copyright &copy; 2018 ISIS Rutherford Appleton Laboratory UKRI,
+#   NScD Oak Ridge National Laboratory, European Spallation Source,
+#   Institut Laue - Langevin & CSNS, Institute of High Energy Physics, CAS
+# SPDX - License - Identifier: GPL - 3.0 +
 """cxxtest: A Python package that supports the CxxTest test framework for C/C++.
 
-.. _CxxTest: http://cxxtest.com/
+.. _CxxTest: http://cxxtest.tigris.org/
 
-CxxTest is a unit testing framework for C++ that is similar in
-spirit to JUnit, CppUnit, and xUnit. CxxTest is easy to use because
-it does not require precompiling a CxxTest testing library, it
-employs no advanced features of C++ (e.g. RTTI) and it supports a
-very flexible form of test discovery.
+The _CxxTest testing framework is focussed on being a lightweight
+framework that is well suited for integration into embedded systems
+development projects.
+
+CxxTest's advantages over existing alternatives are that it:
+
+* Doesn't require RTTI
+* Doesn't require member template functions
+* Doesn't require exception handling
+* Doesn't require any external libraries (including memory management, file/console I/O, graphics libraries)
+* Is distributed entirely as a set of header files (and a python script).
+* Doesn't require the user to manually register tests and test suites
 
 The cxxtest Python package includes capabilities for parsing C/C++ source files and generating
 CxxTest drivers.
 """
 
-from cxxtest.__release__ import __version__, __date__
-__date__
-__version__
+from cxxtest.__release__ import __version__, __date__  # noqa: F401
 
-__maintainer__ = "William E. Hart"
-__maintainer_email__ = "whart222@gmail.com"
+__maintainer__ = "TODO"
+__maintainer_email__ = "TODO"
+__copyright__ = "TODO"
 __license__ = "LGPL"
-__url__ = "http://cxxtest.com"
+__url__ = "http://cxxtest.tigris.org/"
 
-from cxxtest.cxxtestgen import *
+from cxxtest.cxxtestgen import *  # noqa: E402, F401

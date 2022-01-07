@@ -1,5 +1,10 @@
-#ifndef __FIXTURETEST_H
-#define __FIXTURETEST_H
+// Mantid Repository : https://github.com/mantidproject/mantid
+//
+// Copyright &copy; 2018 ISIS Rutherford Appleton Laboratory UKRI,
+//   NScD Oak Ridge National Laboratory, European Spallation Source,
+//   Institut Laue - Langevin & CSNS, Institute of High Energy Physics, CAS
+// SPDX - License - Identifier: GPL - 3.0 +
+#pragma once
 
 #include <cxxtest/TestSuite.h>
 #include <string.h>
@@ -11,23 +16,24 @@
 // test.
 //
 
-class FixtureTest : public CxxTest::TestSuite {
+class FixtureTest : public CxxTest::TestSuite
+{
     char *_buffer;
 public:
-    void setUp() {
+    void setUp()
+    {
         _buffer = new char[1024];
     }
 
-    void tearDown() {
+    void tearDown()
+    {
         delete [] _buffer;
     }
 
-    void test_strcpy() {
-        strcpy(_buffer, "Hello, world!");
-        TS_ASSERT_EQUALS(_buffer[0], 'H');
-        TS_ASSERT_EQUALS(_buffer[1], 'E');
+    void test_strcpy()
+    {
+        strcpy( _buffer, "Hello, world!" );
+        TS_ASSERT_EQUALS( _buffer[0], 'H' );
+        TS_ASSERT_EQUALS( _buffer[1], 'E' );
     }
 };
-
-
-#endif // __FIXTURETEST_H

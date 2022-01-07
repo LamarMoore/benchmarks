@@ -10,8 +10,11 @@
 set CONDA_BASE=@CONDA_BASE_DIR@
 
 
+:: Python -
+set PYTHONHOME=%CONDA_BASE%
+
 :: Misc bin -
 set MISC_BIN=%CONDA_BASE%\bin
 
 :: Update PATH
-set PATH=%MISC_BIN%;%PATH%
+set PATH=%MISC_BIN%;%PYTHONHOME%;%PYTHONHOME%\Scripts;%QT5_BIN%;%PATH%

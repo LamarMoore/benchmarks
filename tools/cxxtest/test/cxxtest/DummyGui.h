@@ -1,5 +1,10 @@
-#ifndef __CXXTEST__DUMMYGUI_H
-#define __CXXTEST__DUMMYGUI_H
+// Mantid Repository : https://github.com/mantidproject/mantid
+//
+// Copyright &copy; 2018 ISIS Rutherford Appleton Laboratory UKRI,
+//   NScD Oak Ridge National Laboratory, European Spallation Source,
+//   Institut Laue - Langevin & CSNS, Institute of High Energy Physics, CAS
+// SPDX - License - Identifier: GPL - 3.0 +
+#pragma once
 
 //
 // The DummyGui is a "GUI" that prints messages to cout
@@ -12,34 +17,32 @@
 
 namespace CxxTest
 {
-class DummyGui : public GuiListener
-{
-public:
-    void guiEnterWorld(unsigned numTotalTests)
+    class DummyGui : public GuiListener
     {
-        (CXXTEST_STD(cout) << " {Start " << numTotalTests << " tests} ").flush();
-    }
+    public:
+        void guiEnterWorld( unsigned numTotalTests )
+        {
+            (CXXTEST_STD(cout) << " {Start " << numTotalTests << " tests} ").flush();
+        }
 
-    void guiEnterTest(const char *suiteName, const char *testName)
-    {
-        (CXXTEST_STD(cout) << " {" << suiteName << "::" << testName << "()} ").flush();
-    }
+        void guiEnterTest( const char *suiteName, const char *testName )
+        {
+            (CXXTEST_STD(cout) << " {" << suiteName << "::" << testName << "()} ").flush();
+        }
 
-    void yellowBar()
-    {
-        (CXXTEST_STD(cout) << " {Yellow} ").flush();
-    }
+        void yellowBar()
+        {
+            (CXXTEST_STD(cout) << " {Yellow} ").flush();
+        }
 
-    void redBar()
-    {
-        (CXXTEST_STD(cout) << " {Red} ").flush();
-    }
+        void redBar()
+        {
+            (CXXTEST_STD(cout) << " {Red} ").flush();
+        }
 
-    void leaveWorld(const WorldDescription &)
-    {
-        (CXXTEST_STD(cout) << " {Stop} ").flush();
-    }
-};
+        void leaveWorld( const WorldDescription & )
+        {
+            (CXXTEST_STD(cout) << " {Stop} ").flush();
+        }
+    };
 }
-
-#endif //__CXXTEST__DUMMYGUI_H

@@ -129,14 +129,16 @@ macro(CXXTEST_ADD_TEST _cxxtest_testname)
   # define the test executable and exclude it from the all target The TESTHELPER_SRCS variable can be set outside the
   # macro and used to pass in test helper classes
   add_executable(${_cxxtest_testname} EXCLUDE_FROM_ALL ${_cxxtest_cpp_files} ${_cxxtest_h_files} ${TESTHELPER_SRCS})
-
-
+  set(_misc_bin $ENV{CONDA_PREFIX}/bin)
   set(_python_home $ENV{CONDA_PREFIX})
 
   # Note: %PATH% isn't understood by cmake but it is by Visual Studio\Windows where it gets used
   set_target_properties(
     ${_cxxtest_testname}
-    PROPERTIES VS_DEBUGGER_ENVIRONMENT "PATH=${_misc_bin};%PATH%")
+    PROPERTIES VS_DEBUGGER_ENVIRONMENT "PATH=${_misc_bin};${_cxxtest_python};${_python_home};${_python_home}/Scripts;%PATH%\n\
+    PYTHONHOME=${_python_home}"
+   )
+
 
   # only the package wide test is added to check
   add_dependencies(check ${_cxxtest_testname})

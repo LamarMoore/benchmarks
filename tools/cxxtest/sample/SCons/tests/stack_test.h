@@ -1,12 +1,17 @@
-#ifndef STACK_TEST_H
-#define STACK_TEST_H
+// Mantid Repository : https://github.com/mantidproject/mantid
+//
+// Copyright &copy; 2018 ISIS Rutherford Appleton Laboratory UKRI,
+//   NScD Oak Ridge National Laboratory, European Spallation Source,
+//   Institut Laue - Langevin & CSNS, Institute of High Energy Physics, CAS
+// SPDX - License - Identifier: GPL - 3.0 +
+#pragma once
 
 #include <cxxtest/TestSuite.h>
 #include <stack.h>
 
 class stack_test : public CxxTest::TestSuite
 {
-    
+
   private:
     stack_t* stack;
   public:
@@ -31,11 +36,11 @@ class stack_test : public CxxTest::TestSuite
       stack_push(stack, 1);
       TS_ASSERT_EQUALS(1, stack_size(stack));
     }
-   
+
     void test_push_pop_doesnt_change_size() {
       stack_push(stack, 1);
       (void)stack_pop(stack);
-      TS_ASSERT_EQUALS(0, stack_size(stack));      
+      TS_ASSERT_EQUALS(0, stack_size(stack));
     }
 
     void test_peak_after_push() {
@@ -66,6 +71,3 @@ class stack_test : public CxxTest::TestSuite
     }
 
 };
-
-#endif // STACK_TEST_H
-

@@ -5,13 +5,13 @@ TESTS            = ..\gui\*.h ..\*.h
 CXXTESTDIR       = ..\..
 
 # Check CXXTESTDIR
-!if !exist($(CXXTESTDIR)\bin\cxxtestgen)
+!if !exist($(CXXTESTDIR)\python\scripts\cxxtestgen)
 !error Please fix CXXTESTDIR
 !endif
 
 # cxxtestgen needs Perl or Python
 !if defined(PYTHON)
-CXXTESTGEN       = $(PYTHON) $(CXXTESTDIR)/bin/cxxtestgen
+CXXTESTGEN       = $(PYTHON) $(CXXTESTDIR)/python/scripts/cxxtestgen
 !else
 !error You must define PERL or PYTHON
 !endif
