@@ -1,5 +1,5 @@
 name: Benchmarks Tests
-on: [push, pull-request]
+on: [push, pull_request]
 jobs:
   Run-Unit-Tests:
     name: Benchmark Unit Tests
@@ -22,4 +22,4 @@ jobs:
         name: Run Unit Tests
         run:
           ctest -C Release -V --test-dir ./build --output-on-failure --stop-on-failure
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - run: echo "Job status ${{ job.status }}."
