@@ -21,5 +21,5 @@ jobs:
           msbuild build/benchmarks.sln /p:Configuration=Release
         name: Run Unit Tests
         run:
-          ctest -C Release -V --test-dir ./build
+          ctest -C Release -V --test-dir ./build --output-on-failure --stop-on-failure
       - run: echo "🍏 This job's status is ${{ job.status }}."
