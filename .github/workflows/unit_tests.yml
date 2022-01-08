@@ -5,9 +5,10 @@ jobs:
     name: Benchmark Unit Tests
     runs-on: windows-latest
     steps:
+      - run: echo "Checking out benchmarks code"
       - name: Check out repository code
         uses: actions/checkout@v2
-        name: Grab Dependencies and Create Conda Environment
+      - name: Grab Dependencies and Create Conda Environment
       - run: 
           C:\Miniconda\condabin\conda.bat env create -f benchmarks-win.yml
           C:\Miniconda\condabin\conda.bat env init powershell
