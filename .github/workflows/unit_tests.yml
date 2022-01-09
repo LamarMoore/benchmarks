@@ -14,10 +14,12 @@ jobs:
       - name: Activate benchmarks-dev environment and run cmake
         run:
           C:\Miniconda\condabin\conda.bat activate benchmarks-dev
+      - run:
           cmake --preset=win -B build -DCXXTEST_ADD_PERFORMANCE=ON
       - name: Build benchmarks
         run:
           build\command-prompt.bat
+      - run:
           msbuild build/benchmarks.sln /p:Configuration=Release
       - name: Run Unit Tests
         run:
