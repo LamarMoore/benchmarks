@@ -9,18 +9,18 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: Grab Dependencies and Create Conda Environment
-      - run: 
+        run: 
           C:\Miniconda\condabin\conda.bat env create -f benchmarks-win.yml
           C:\Miniconda\condabin\conda.bat env init powershell
       - name: Activate benchmarks-dev environment and run cmake
-      - run:
+        run:
           C:\Miniconda\condabin\conda.bat activate benchmarks-dev
           cmake --preset=win -B build -DCXXTEST_ADD_PERFORMANCE=ON
       - name: Build benchmarks
-      - run:
+        run:
           build\command-prompt.bat
           msbuild build/benchmarks.sln /p:Configuration=Release
       - name: Run Unit Tests
-      - run:
+        run:
           ctest -C Release -V --test-dir ./build --output-on-failure --stop-on-failure
       - run: echo "Job status ${{ job.status }}."
