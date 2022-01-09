@@ -11,7 +11,6 @@ jobs:
       - name: Grab Dependencies and Create Conda Environment
         run: 
           C:\Miniconda\condabin\conda.bat env create -f benchmarks-win.yml
-          C:\Miniconda\condabin\conda.bat init powershell
       - name: Activate benchmarks-dev environment and run cmake
         run:
           C:\Miniconda\condabin\conda.bat activate benchmarks-dev
