@@ -21,10 +21,10 @@ jobs:
           cmake --preset=win -B build -DCXXTEST_ADD_PERFORMANCE=ON
       - name: Add MSVC to PATH
         uses: microsoft/setup-msbuild@v1.1
+      - run: echo %PATH%
       - name: Build Benchmarks and Run Unit Tests
         shell: bash -l {0}
         run: |
-          echo %PATH%
           ./build/command-prompt.bat
           echo %PATH%
           msbuild ./build/benchmarks.sln /p:Configuration=Release
