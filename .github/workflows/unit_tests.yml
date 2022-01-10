@@ -22,6 +22,6 @@ jobs:
         shell: bash -l {0}
         run: |
           build\command-prompt.bat
-          msbuild build/benchmarks.sln /p:Configuration=Release
-          ctest -C Release -V --test-dir ./build --output-on-failure --stop-on-failure
+          msbuild build\benchmarks.sln /p:Configuration=Release
+          ctest -C Release -V --test-dir .\build --output-on-failure --stop-on-failure
       - run: echo "Job status ${{ job.status }}."
