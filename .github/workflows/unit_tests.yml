@@ -14,7 +14,7 @@ jobs:
           C:\Miniconda\condabin\conda.bat activate benchmarks-dev
           cmake --preset=win -B build -DCXXTEST_ADD_PERFORMANCE=ON
       - name: Build Benchmarks and Run Unit Tests
-      - run: |
+        run: |
           build\command-prompt.bat
           msbuild build/benchmarks.sln /p:Configuration=Release
           ctest -C Release -V --test-dir ./build --output-on-failure --stop-on-failure
