@@ -8,8 +8,6 @@ jobs:
       - run: echo "Checking out benchmarks code"
       - name: Check out repository code
         uses: actions/checkout@v2
-      - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v1.1
       - name: Grab Dependencies and Create Conda Environment
         uses: conda-incubator/setup-miniconda@v2
         with:
@@ -21,6 +19,8 @@ jobs:
         shell: bash -l {0}
         run:
           cmake --preset=win -B build -DCXXTEST_ADD_PERFORMANCE=ON
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.1
       - name: Build Benchmarks and Run Unit Tests
         shell: bash -l {0}
         run: |
