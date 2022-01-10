@@ -15,12 +15,14 @@ jobs:
           environment-file: benchmarks-win.yml
           python-version: 3.8
           auto-activate-base: false
-      - shell: bash -l {0}
+      - name: Run CMake
+        shell: bash -l {0}
         run:
           cmake --preset=win -B build -DCXXTEST_ADD_PERFORMANCE=ON
       - name: Build Benchmarks and Run Unit Tests
         shell: bash -l {0}
         run: |
+          dir
           build\command-prompt.bat
           msbuild build\benchmarks.sln /p:Configuration=Release
           ctest -C Release -V --test-dir .\build --output-on-failure --stop-on-failure
