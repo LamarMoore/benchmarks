@@ -41,12 +41,12 @@ if(Python_INCLUDE_DIR AND NOT Python_INCLUDE_DIR MATCHES ".*${Python_VERSION_MAJ
 endif()
 
 # What version of setuptools are we using?
-execute_process(
-  COMMAND ${Python_EXECUTABLE} -c "import setuptools;print(setuptools.__version__)"
-  RESULT_VARIABLE _setuptools_version_check_result
-  OUTPUT_VARIABLE Python_SETUPTOOLS_VERSION
-  ERROR_VARIABLE _setuptools_version_check_error
-)
-if(NOT _setuptools_version_check_result EQUAL 0)
-  message(FATAL_ERROR "Unable to determine setuptools version - erro no ${_setuptools_version_check_result}:\n" "    ${_setuptools_version_check_error}")
-endif()
+# execute_process(
+  # COMMAND ${Python_EXECUTABLE} -c "import setuptools;print(setuptools.__version__)"
+  # RESULT_VARIABLE _setuptools_version_check_result
+  # OUTPUT_VARIABLE Python_SETUPTOOLS_VERSION
+  # ERROR_VARIABLE _setuptools_version_check_error
+# )
+# if(NOT _setuptools_version_check_result EQUAL 0)
+  # message(FATAL_ERROR "Unable to determine setuptools version - erro no ${_setuptools_version_check_result}:\n" "    ${_setuptools_version_check_error}")
+# endif()
