@@ -19,12 +19,13 @@ jobs:
         shell: bash -l {0}
         run:
           cmake --preset=win -B build -DCXXTEST_ADD_PERFORMANCE=ON
-      - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v1.1
       - name: Build Benchmarks and Run Unit Tests
         shell: bash -l {0}
+        uses: microsoft/setup-msbuild@v1.1
         run: |
+          echo %PATH%
           ./build/command-prompt.bat
+          echo %PATH%
           msbuild ./build/benchmarks.sln /p:Configuration=Release
           ctest -C Release -V --test-dir ./build --output-on-failure --stop-on-failure
       - run: echo "Job status ${{ job.status }}."
