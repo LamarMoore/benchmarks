@@ -9,12 +9,17 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: Grab Dependencies and Create Conda Environment
-        run: |
-          C:\Miniconda\condabin\conda.bat env create -f benchmarks-win.yml
-          C:\Miniconda\condabin\conda.bat init powershell
-          C:\Miniconda\condabin\conda.bat activate benchmarks-dev
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: benchmarks-dev
+          environment-file: benchmarks-win.yml
+          python-version: 3.8
+          auto-activate-base: false
+      - shell: bash -l {0}
+        run:
           cmake --preset=win -B build -DCXXTEST_ADD_PERFORMANCE=ON
       - name: Build Benchmarks and Run Unit Tests
+        shell: bash -l {0}
         run: |
           build\command-prompt.bat
           msbuild build/benchmarks.sln /p:Configuration=Release
