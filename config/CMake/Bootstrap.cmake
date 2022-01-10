@@ -48,5 +48,5 @@ execute_process(
   ERROR_VARIABLE _setuptools_version_check_error
 )
 if(NOT _setuptools_version_check_result EQUAL 0)
-  message(FATAL_ERROR "Unable to determine setuptools version:\n" "    ${_setuptools_version_check_error}")
+  message(FATAL_ERROR "Unable to determine setuptools version - erro no ${_setuptools_version_check_result}:\n" "    ${_setuptools_version_check_error}")
 endif()
