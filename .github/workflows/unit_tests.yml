@@ -11,6 +11,7 @@ jobs:
       - name: Grab Dependencies and Create Conda Environment
         run: |
           C:\Miniconda\condabin\conda.bat env create -f benchmarks-win.yml
+          C:\Miniconda\condabin\conda.bat init powershell
           C:\Miniconda\condabin\conda.bat activate benchmarks-dev
           cmake --preset=win -B build -DCXXTEST_ADD_PERFORMANCE=ON
       - name: Build Benchmarks and Run Unit Tests
