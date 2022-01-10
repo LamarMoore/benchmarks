@@ -40,6 +40,7 @@ if(Python_INCLUDE_DIR AND NOT Python_INCLUDE_DIR MATCHES ".*${Python_VERSION_MAJ
   unset_cached_python_variables()
 endif()
 
+message(WARNING "conda env $ENV{CONDA_PREFIX}")
 # What version of setuptools are we using?
 # execute_process(
   # COMMAND ${Python_EXECUTABLE} -c "import setuptools;print(setuptools.__version__)"

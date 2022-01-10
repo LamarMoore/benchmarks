@@ -1,5 +1,5 @@
 name: Benchmarks Tests
-on: [push, pull_request]
+on: [pull_request]
 jobs:
   Run-Unit-Tests:
     name: Benchmark Unit Tests
