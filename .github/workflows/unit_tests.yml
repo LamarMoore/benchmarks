@@ -21,12 +21,9 @@ jobs:
           cmake --preset=win -B build -DCXXTEST_ADD_PERFORMANCE=ON
       - name: Add MSVC to PATH
         uses: microsoft/setup-msbuild@v1.1
-      - name: View msbuild help
-        run: msbuild -h
       - name: Build Benchmarks and Run Unit Tests
-        shell: bash -l {0}
         run: |
-          build\command-prompt.bat
-          C:\Program Files (x86)\Microsoft Visual Studio\2019/Enterprise\MSBuild\Current\Bin\MSBuild.exe ./build/benchmarks.sln /p:Configuration=Release
+          ./build/command-prompt.bat
+          msbuild ./build/benchmarks.sln /p:Configuration=Release
           ctest -C Release -V --test-dir ./build --output-on-failure --stop-on-failure
       - run: echo "Job status ${{ job.status }}."
