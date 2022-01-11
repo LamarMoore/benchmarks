@@ -1,0 +1,29 @@
+name: Benchmarks Tests
+on: [pull_request]
+jobs:
+  Run-Unit-Tests:
+    name: Benchmark Unit Tests
+    runs-on: windows-latest
+    steps:
+      - run: echo "Checking out benchmarks code"
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Grab Dependencies and Create Conda Environment
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: benchmarks-dev
+          environment-file: benchmarks-win.yml
+          python-version: 3.8
+          auto-activate-base: false
+      - name: Run CMake
+        shell: bash -l {0}
+        run:
+          cmake --preset=win -B build -DCXXTEST_ADD_PERFORMANCE=ON
+      - name: Add MSVC to PATH
+        uses: microsoft/setup-msbuild@v1.1
+      - name: Build Benchmarks and Run Unit Tests
+        run: |
+          ./build/command-prompt.bat
+          msbuild ./build/benchmarks.sln /p:Configuration=Release
+          ctest -C Release -V --test-dir ./build --output-on-failure --stop-on-failure
+      - run: echo "Job status ${{ job.status }}."

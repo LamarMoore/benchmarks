@@ -157,14 +157,9 @@ macro(CXXTEST_ADD_TEST _cxxtest_testname)
       set_property(
         TEST ${_cxxtest_separate_name}
         APPEND
-        PROPERTY ENVIRONMENT "QT_QPA_PLATFORM_PLUGIN_PATH=${_qt_qpa_platform_plugin}"
-      )
-      set_property(
-        TEST ${_cxxtest_separate_name}
-        APPEND
         PROPERTY ENVIRONMENT "PYTHONHOME=${_python_home}"
       )
-      set(_new_path ${_misc_bin} ${_qt5_bin} ${_python_home} ${_python_home}/Scripts $ENV{PATH})
+      set(_new_path ${_misc_bin} ${_python_home} ${_python_home}/Scripts $ENV{PATH})
       # the value used for PATH has to have explicit semi colons for some reason
       string(REPLACE ";" "\;" _new_path "${_new_path}")
       set_property(
