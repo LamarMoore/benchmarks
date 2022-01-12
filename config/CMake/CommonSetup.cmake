@@ -13,15 +13,6 @@ if(NOT CMAKE_CONFIGURATION_TYPES)
   endif()
 endif()
 
-find_package(CxxTest)
-if(CXXTEST_FOUND)
-  add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND})
-  make_directory(${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Testing)
-  message(STATUS "Added target ('check') for unit tests")
-else()
-  message(STATUS "Could NOT find CxxTest - unit testing not available")
-endif()
-
 find_package(GTest)
 enable_testing()
 
