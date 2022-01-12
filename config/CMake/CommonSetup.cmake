@@ -84,9 +84,9 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
 endif()
 
 # ######################################################################################################################
-# Set the c++ standard to 20 - cmake should do the right thing with msvc
+# Set the c++ standard to 17 - cmake should do the right thing with msvc
 # ######################################################################################################################
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # ######################################################################################################################
