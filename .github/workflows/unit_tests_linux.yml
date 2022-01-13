@@ -18,7 +18,7 @@ jobs:
       - name: Run CMake
         shell: bash -l {0}
         run:
-          cmake --preset=win -B build
+          cmake --preset=linux -B build
       - name: Build Benchmarks and Run Unit Tests
         shell: bash -l {0}
         run: |
