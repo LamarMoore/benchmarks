@@ -24,13 +24,6 @@ jobs:
         run: |
           cmake --build ./build --target cppcheck
           cppcheck-htmlreport --file=./build/cppcheck.xml --title=Embedded --report-dir=cppcheck-report
-
-          errors_count = $(grep -c '</error>' cppcheck.xml) || true
-          if [ $errors_count -ne 0]; then
-            echo "CppCheck found ${errors_count} errors."
-            exit 1
-          else 
-            echo "CppCheck found no errors"
-          fi
-
+      - name: Extract CppCheck Errors
+	run: bash ./.github/scripts/extract_cppcheck_errors.sh
       - run: echo "Job status ${{ job.status }}."
