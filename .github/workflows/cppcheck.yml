@@ -25,5 +25,5 @@ jobs:
           cmake --build ./build --target cppcheck
           cppcheck-htmlreport --file=./build/cppcheck.xml --title=Embedded --report-dir=cppcheck-report
       - name: Extract CppCheck Errors
-	run: bash ./.github/scripts/extract_cppcheck_errors.sh
+        run: bash ./.github/scripts/extract_cppcheck_errors.sh
       - run: echo "Job status ${{ job.status }}."
