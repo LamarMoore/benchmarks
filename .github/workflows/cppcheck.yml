@@ -1,0 +1,36 @@
+name: CppCheck
+on: [pull_request]
+jobs:
+  Run-CppCheck:
+    name: CppCheck
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Checking out benchmarks code"
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Grab Dependencies and Create Conda Environment
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: benchmarks-dev
+          environment-file: benchmarks-linux.yml
+          python-version: 3.8
+          auto-activate-base: false
+      - name: Run CMake 
+        shell: bash -l {0}
+        run:
+          cmake --preset=linux -B build -DCPPCHECK_GENERATE_XML=TRUE
+      - name: Build and Run CppCheck Target
+        shell: bash -l {0}
+        run: |
+          cmake --build ./build --target cppcheck
+          cppcheck-htmlreport --file=./build/cppcheck.xml --title=Embedded --report-dir=cppcheck-report
+
+          errors_count = $(grep -c '</error>' cppcheck.xml || true
+          if [ $errors_count -ne 0]; then
+            echo "CppCheck found ${errors_count} errors."
+            exit 1
+          else 
+            echo "CppCheck found no errors"
+          fi
+
+      - run: echo "Job status ${{ job.status }}."
