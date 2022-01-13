@@ -1,9 +1,9 @@
-name: Benchmarks Tests
+name: Benchmarks Tests (Ubuntu)
 on: [pull_request]
 jobs:
   Run-Unit-Tests:
     name: Benchmark Unit Tests
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - run: echo "Checking out benchmarks code"
       - name: Check out repository code
@@ -12,18 +12,16 @@ jobs:
         uses: conda-incubator/setup-miniconda@v2
         with:
           activate-environment: benchmarks-dev
-          environment-file: benchmarks-win.yml
+          environment-file: benchmarks-linux.yml
           python-version: 3.8
           auto-activate-base: false
       - name: Run CMake
         shell: bash -l {0}
         run:
-          cmake --preset=win -B build -DCXXTEST_ADD_PERFORMANCE=ON
-      - name: Add MSVC to PATH
-        uses: microsoft/setup-msbuild@v1.1
+          cmake --preset=win -B build
       - name: Build Benchmarks and Run Unit Tests
+        shell: bash -l {0}
         run: |
-          ./build/command-prompt.bat
-          msbuild ./build/benchmarks.sln /p:Configuration=Release
+          ninja -C ./build
           ctest -C Release -V --test-dir ./build --output-on-failure --stop-on-failure
       - run: echo "Job status ${{ job.status }}."
