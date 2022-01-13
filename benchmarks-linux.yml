@@ -1,0 +1,32 @@
+   
+name: benchmarks-dev
+
+channels:
+  - conda-forge
+
+dependencies:
+  - boost=1.75.* 
+  - cmake>=3.20.*
+  - conda-wrappers
+  - ninja>=1.10.2
+  - jemalloc>=5.2.1
+  - gxx_linux-64==10.3.*
+  - gcovr>=4.2
+  - tbb-devel=2021.5.*
+  - tbb=2021.5.*
+  - cppcheck>=2.4.1
+  - pre-commit>=2.12.0
+  - pip>=21.0.1
+  - python=3.8.*
+  - gtest=1.10.*
+  - setuptools=48.0.0
+  - gmock=1.10.*
+
+# Needed for test suite on Linux
+  - pciutils-libs-cos7-x86_64>=3.5.1
+  - xorg-libxcomposite>=0.4.5
+  - xorg-libxcursor>=1.2.0
+  - xorg-libxdamage>=1.1.5
+  - xorg-libxi>=1.7.10
+  - xorg-libxscrnsaver>=1.2.3
+  - xorg-libxtst>=1.2.3
