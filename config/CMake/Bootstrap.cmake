@@ -3,16 +3,19 @@
 # ######################################################################################################################
 
 
-# Print out where we are looking for 3rd party stuff
-set(Python_FIND_REGISTRY NEVER)
-# used in later parts for MSVC to bundle Python
-set(MSVC_PYTHON_EXECUTABLE_DIR $ENV{CONDA_PREFIX})
-set(THIRD_PARTY_BIN "$ENV{CONDA_PREFIX}/Library/bin;$ENV{CONDA_PREFIX}/Library/lib;${MSVC_PYTHON_EXECUTABLE_DIR}")
-# Add to the path so that cmake can configure correctly without the user having to do it
-set(ENV{PATH} "${THIRD_PARTY_BIN};$ENV{PATH}")
-# Set PATH for custom command or target build steps. Avoids the need to make external PATH updates
-set(CMAKE_MSVCIDE_RUN_PATH ${THIRD_PARTY_BIN})
+if (MSVC)
 
+	# Print out where we are looking for 3rd party stuff
+	set(Python_FIND_REGISTRY NEVER)
+	# used in later parts for MSVC to bundle Python
+	set(MSVC_PYTHON_EXECUTABLE_DIR $ENV{CONDA_PREFIX})
+	set(THIRD_PARTY_BIN "$ENV{CONDA_PREFIX}/Library/bin;$ENV{CONDA_PREFIX}/Library/lib;${MSVC_PYTHON_EXECUTABLE_DIR}")
+	# Add to the path so that cmake can configure correctly without the user having to do it
+	set(ENV{PATH} "${THIRD_PARTY_BIN};$ENV{PATH}")
+	# Set PATH for custom command or target build steps. Avoids the need to make external PATH updates
+	set(CMAKE_MSVCIDE_RUN_PATH ${THIRD_PARTY_BIN})
+	set(Python_EXECUTABLE $ENV{CONDA_PREFIX}/python.exe)
+endif()
 
 # Clean out python variables set from a previous build so they can be rediscovered again
 function(unset_cached_Python_variables)
@@ -28,8 +31,7 @@ endfunction()
 
 # Find python interpreter
 set(MINIMUM_PYTHON_VERSION 3.6)
-set(Python_EXECUTABLE $ENV{CONDA_PREFIX}/python.exe)
-
+find_package(Python ${MINIMUM_PYTHON_VERSION} REQUIRED COMPONENTS Interpreter Development)
 # If anything external uses find_package(PythonInterp) then make sure it finds the correct version and executable
 set(PYTHON_EXECUTABLE ${Python_EXECUTABLE})
 set(Python_ADDITIONAL_VERSIONS ${Python_VERSION_MAJOR}.${Python_VERSION_MINOR})
@@ -41,6 +43,7 @@ if(Python_INCLUDE_DIR AND NOT Python_INCLUDE_DIR MATCHES ".*${Python_VERSION_MAJ
 endif()
 
 # What version of setuptools are we using?
+message(WARNING "python ${Python_EXECUTABLE}")
 execute_process(
   COMMAND ${Python_EXECUTABLE} -c "import setuptools;print(setuptools.__version__)"
   RESULT_VARIABLE _setuptools_version_check_result
