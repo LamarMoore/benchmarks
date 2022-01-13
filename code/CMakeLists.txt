@@ -2,7 +2,7 @@ set(SRC_FILES src/benchmarks.cpp)
 
 set(INC_FILES inc/benchmarks.h)
 
-set(TEST_FILES BenchmarksTest.h)
+set(TEST_FILES BenchmarksTest.cpp)
 
 
 add_library(benchmarks STATIC ${SRC_FILES} ${INC_FILES})
