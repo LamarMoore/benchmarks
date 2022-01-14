@@ -23,7 +23,7 @@ jobs:
         shell: bash -l {0}
         run: |
           cmake --build ./build --target cppcheck
-          cppcheck-htmlreport --file=./build/cppcheck.xml --title=Embedded --report-dir=cppcheck-report --suppress=missingIncludeSystem
+          cppcheck-htmlreport --file=./build/cppcheck.xml --title=Embedded --report-dir=cppcheck-report 
       - name: Extract CppCheck Errors
         run: python ./.github/scripts/extract_cppcheck_errors.py
       - run: echo "Job status ${{ job.status }}."
