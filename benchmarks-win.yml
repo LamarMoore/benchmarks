@@ -15,5 +15,6 @@ dependencies:
   - pip>=21.0.1
   - python=3.8.*
   - gtest=1.10.*
+  - benchmark=1.6.*
   - setuptools=48.0.0
   - gmock=1.10.*
