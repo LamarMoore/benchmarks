@@ -3,7 +3,7 @@
 
 using namespace Benchmarks;
 
-namespace LocalGoogleTests {
+namespace BenchmarksTests {
 	class BenchmarksTest : public ::testing::Test {
 	};
 

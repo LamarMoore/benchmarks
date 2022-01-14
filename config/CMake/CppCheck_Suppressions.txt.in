@@ -1,3 +1,5 @@
 unusedFunction
 
 missingIncludeSystem
+
+syntaxError:${CMAKE_SOURCE_DIR}/code/test/BenchmarksTest.cpp
