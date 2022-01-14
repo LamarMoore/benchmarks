@@ -4,6 +4,8 @@ set(INC_FILES inc/benchmarks.h)
 
 set(TEST_FILES BenchmarksTest.cpp)
 
+set(BENCHMARK_FILES BenchmarksPerformanceTest.cpp)
+
 
 add_library(benchmarks STATIC ${SRC_FILES} ${INC_FILES})
 # Set the name of the generated library

@@ -14,6 +14,7 @@ if(NOT CMAKE_CONFIGURATION_TYPES)
 endif()
 
 find_package(GTest)
+find_package(Benchmark)
 enable_testing()
 
 # We want shared libraries everywhere

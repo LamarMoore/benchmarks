@@ -21,6 +21,7 @@ dependencies:
   - gtest=1.10.*
   - setuptools=48.0.0
   - gmock=1.10.*
+  - benchmark=1.6.*
 
 # Needed for test suite on Linux
   - pciutils-libs-cos7-x86_64>=3.5.1
