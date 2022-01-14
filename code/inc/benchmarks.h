@@ -7,7 +7,7 @@ namespace Benchmarks {
 	class BenchmarkTests {
 	public:
 		BenchmarkTests();
-		BenchmarkTests(const size_t arraySize);
+		explicit BenchmarkTests(const size_t arraySize);
 
 		// initialise 
 		void setBenchmarkArraySize(const size_t arraySize);

@@ -43,7 +43,6 @@ if(Python_INCLUDE_DIR AND NOT Python_INCLUDE_DIR MATCHES ".*${Python_VERSION_MAJ
 endif()
 
 # What version of setuptools are we using?
-message(WARNING "python ${Python_EXECUTABLE}")
 execute_process(
   COMMAND ${Python_EXECUTABLE} -c "import setuptools;print(setuptools.__version__)"
   RESULT_VARIABLE _setuptools_version_check_result
