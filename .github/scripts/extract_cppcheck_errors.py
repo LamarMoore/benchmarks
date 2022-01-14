@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 import os
 
-tree = ET.parse(".build/cppcheck.xml")
+tree = ET.parse("./build/cppcheck.xml")
 root = tree.getroot()
 errors = root.find('errors').findall('error')
 if len(errors) == 0:
